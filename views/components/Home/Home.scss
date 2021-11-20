@@ -1,0 +1,91 @@
+.home-view {
+  .home-section {
+    padding-bottom: 5rem;
+  }
+
+  .home-column-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 8rem;
+  }
+
+  .home-column-text {
+    color: rgb(50,50,50);
+  }
+
+  .home-column-text-heading {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .home-column-text-paragraph {
+    font-size: 1rem;
+  }
+
+  @media screen and (max-width: 600px) {
+
+  }
+
+  .summary {
+    color: var(--muted-text-color);
+    text-align: center;
+    font-weight: normal;
+  }
+
+  .summary-line {
+    font-size: 1rem;
+  }
+
+  .summary-subline {
+    font-size: 0.8rem;
+  }
+
+  .home-section-header {
+    color: var(--primary-color);
+    text-align: right;
+    margin: 0.5rem 0;
+  }
+
+  .home-section-icon-container {
+    text-align: center;
+  }
+
+  .home-section-icon {
+    margin: 0 0.25rem;
+  }
+
+  .home-section-icon-i {
+    font-size: 4rem;
+  }
+
+  .home-section-icon-image {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .home-section-icon-i.fab {
+    /* background-color: white; */
+  }
+
+  .home-section-icon-i.fab.fa-html5 {
+    color: #e34f26; /*#fb7a5a*/
+  }
+
+  .home-section-icon-i.fab.fa-css3-alt {
+    color: #309ed9; /*#63bced*/
+  }
+
+  .home-section-icon-i.fab.fa-js {
+    color: #f8dc3d;
+    background-color: #2e2e2c;
+  }
+
+  .home-section-icon-i.fab.fa-git-alt {
+    color: #f05133;
+  }
+
+  .home-section-icon-i.fab.fa-github {
+    color: black;
+  }
+}

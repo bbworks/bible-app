@@ -1,0 +1,83 @@
+@charset "UTF-8";
+/* Desktop/Laptop/Tablet/Landscape Mobile (>768px)*/
+.footer {
+  background-color: var(--footer-background-color);
+}
+.footer, .footer * {
+  color: var(--footer-foreground-color);
+}
+.footer .footer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer .footer-container .footer-logo * {
+  color: var(--footer-accent-color);
+}
+.footer .footer-container .footer-icons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  margin-top: 2rem;
+}
+.footer .footer-container .footer-icons-container .footer-icons-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: white;
+  border-radius: 50%;
+  padding: 0.5rem;
+  text-align: center;
+  margin: 0 0.25rem;
+  transition: transform 0.25s;
+}
+.footer .footer-container .footer-icons-container .footer-icons-circle:hover {
+  transform: translateY(-10%);
+}
+.footer .footer-container .footer-icons-container .footer-icons {
+  color: white;
+  margin: 0 0.25rem;
+  transition: color 0.25s;
+}
+.footer .footer-container .footer-icons-container .footer-icons-facebook {
+  background-color: #3B5998;
+}
+.footer .footer-container .footer-icons-container .footer-icons-linkedin {
+  background-color: #007bb5;
+}
+.footer .footer-container .footer-icons-container .footer-icons-youtube {
+  background-color: #bb0000;
+}
+.footer .footer-container .footer-icons-container .footer-icons-github {
+  background-color: #000000;
+}
+.footer .footer-container .footer-nav {
+  margin-top: 1rem;
+}
+.footer .footer-container .footer-nav .footer-nav-item {
+  color: var(--footer-accent-color);
+  font-size: 0.75rem;
+  transition: color 0.25s;
+}
+.footer .footer-container .footer-nav .footer-nav-item:not(:last-child)::after {
+  content: "•";
+  color: var(--footer-foreground-color);
+  margin: 0 0.5rem;
+}
+.footer .footer-container .footer-icons-circle:hover .footer-icons,
+.footer .footer-container .footer-nav-item:hover {
+  color: var(--medium-color);
+}
+.footer .footer-container .footer-copyright {
+  font-size: 0.75rem;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+}
+
+/* Mobile(portrait) (<768px)*/
+
+/*# sourceMappingURL=Footer.css.map */

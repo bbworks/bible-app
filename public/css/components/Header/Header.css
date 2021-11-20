@@ -1,0 +1,99 @@
+/* Desktop/Laptop/Tablet/Landscape Mobile (>768px)*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--header-background-color);
+  width: 100%;
+  padding: 0 0.5rem;
+  /* Mobile(portrait) (<768px)*/
+}
+.header-logo {
+  display: inline-block;
+  color: var(--header-foreground-color);
+  font-size: 2.25rem;
+}
+.header-nav-container {
+  display: inline-block;
+  /* style toggle after .header-nav-item so we can overwrite it */
+}
+.header-nav-container .header-nav-item {
+  color: var(--primary-color);
+  display: inline-block;
+  font-weight: bold;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  transition: color 0.4s;
+}
+.header-nav-container .header-nav-toggle {
+  display: none;
+  font-size: 1.25rem;
+}
+.header-nav-container .header-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  text-align: center;
+  height: 3rem;
+}
+.header-nav-container .header-nav:before {
+  content: "";
+  position: absolute;
+  left: -4rem;
+  top: 0;
+  border-left: 4rem solid transparent;
+  border-right: 0px solid transparent;
+  border-bottom: 3rem solid white;
+}
+.header-nav-container .header-nav:after {
+  content: "";
+  position: absolute;
+  right: -0.5rem;
+  top: 0;
+  bottom: 0;
+  width: 0.5rem;
+  background-color: white;
+}
+.header-nav-container .header-nav-item:not(.header-nav-toggle):hover,
+.header-nav-container .header-nav-item.current {
+  color: var(--header-foreground-color);
+}
+.header-nav-container .header-nav-item.current:hover {
+  color: var(--primary-color);
+}
+@media screen and (max-width: 600px) {
+  .header .header-nav-toggle {
+    display: inline-block;
+  }
+  .header .header-nav {
+    position: fixed;
+    left: 0;
+    display: block;
+    align-items: center;
+    width: 100%;
+    height: unset;
+    z-index: 99;
+    background-color: var(--light-background-color-translucent);
+    overflow-y: scroll;
+    /* opacity: 0; */
+    transition: transform 0.2s;
+    transform: translateX(100%);
+  }
+  .header .header-nav:after {
+    width: 0;
+  }
+  .header .header-nav-item:not(.header-nav-toggle) {
+    display: block;
+    margin: 2rem 0;
+  }
+  .header .header-nav-container.responsive .header-nav-toggle {
+    color: gray;
+  }
+  .header .header-nav-container.responsive .header-nav {
+    transform: translateX(0);
+    /* opacity: 1; */
+  }
+}
+
+/*# sourceMappingURL=Header.css.map */

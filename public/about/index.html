@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+	<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+	<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+	<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+	<!--[if gt IE 8]>      <html class="no-js" lang="en"> <![endif]-->
+<html class="no-js" lang="en">
+  <!-- views/partials/head.ejs -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="The personal site for Bradley Biera.">
+    <title>Bradley Biera | About</title>
+
+    <!-- FONT AWESOME -->
+    <!-- NOTE: Import Font Awesome first, so we can override the formating of their icons -->
+    <!-- <link type="text/css" rel="stylesheet" href="/lib/fontawesome-free-5.14.0-web/css/all.min.css"> -->
+    <link type="text/css" rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css"></link>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <!-- GOOGLE FONTS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+    <!-- GOOGLE RECAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <!-- Site-wide stylesheets -->
+    <link type="text/css" rel="stylesheet" href="/css/styles.css">
+
+    <!-- Page-specific stylesheets -->
+    
+  </head>
+
+  <body>
+    <!-- views/partials/header.ejs -->
+
+    <header class="header">
+      <a class="header-logo" href="/">
+        <h2 class="logo">Bradley Biera</h2>
+      </a>
+      <div class="header-nav-container">
+        <a class="header-nav-item header-nav-toggle fa fa-bars" href="javascript:void(0);" onclick="toggleMobileNav(event)"></a>
+        <!-- views/partials/nav.ejs -->
+
+    <nav class="header-nav">
+      <a class="header-nav-item" href="/">Home</a
+      ><a class="header-nav-item current" href="/about">About</a
+      ><a class="header-nav-item" href="/bible">Bible</a>
+    </nav>
+
+      </div>
+    </header>
+
+        <div class="view about-view">
+      <main class="main">
+        <h2 class="page-title">About</h2>
+        <div class="content">
+          This is the <a href="/about">About</a> page.
+        </div>
+      </main>
+    </div>
+
+    <!-- views/partials/footer.ejs -->
+
+    <footer class="footer section">
+      <div class="footer-container container">
+      <div class="footer-section footer-logo">
+        <h2 class="logo">Bradley Biera</h2>
+      </div
+      ><div class="footer-section footer-icons-container">
+        <a class="footer-icons-circle footer-icons-facebook" href="https://www.facebook.com/bradley.biera" target="_self" title="Bradley Biera | Facebook">
+          <i class="footer-icons fab fa-facebook-f"></i>
+        </a>
+        <a class="footer-icons-circle footer-icons-linkedin" href="http://www.linkedin.com/in/bradley-biera-059674135/" target="_self" title="Bradley Biera | LinkedIn">
+          <i class="footer-icons fab fa-linkedin-in"></i>
+        </a>
+        <a class="footer-icons-circle footer-icons-youtube" href="https://www.youtube.com/user/BradleyBieraMusic" target="_self" title="BradleyBieraMusic | YouTube">
+          <i class="footer-icons fab fa-youtube"></i>
+        </a>
+        <a class="footer-icons-circle footer-icons-github" href="https://github.com/bbworks" target="_self" title="Bradley Biera | Github">
+          <i class="footer-icons fab fa-github"></i>
+        </a>
+      </div
+      ><!-- views/partials/nav.ejs -->
+
+    <nav class="footer-section footer-nav">
+      <a class="footer-nav-item" href="/">Home</a
+      ><a class="footer-nav-item" href="/about">About</a
+      ><a class="footer-nav-item" href="/bible">Bible</a>
+    </nav>
+
+      <div class="footer-copyright">
+        <p>©2020 Bradley Biera. All rights reserved.</p>
+      </div>
+      </div>
+    </footer>
+
+    <!-- views/partials/script.ejs -->
+
+    <!-- BOOTSTRAP -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script> <!- POPPER (tooltips or popovers) -> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+
+    <!-- Site-wide scripts -->
+    <script src="/js/toggleMobileNav.js"></script>
+
+    <!-- Page-specific scripts -->
+    
+
+  </body>
+</html>

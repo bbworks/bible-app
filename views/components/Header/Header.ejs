@@ -1,0 +1,15 @@
+<!-- views/partials/header.ejs -->
+
+    <header class="header">
+      <a class="header-logo" href="/">
+        <h2 class="logo">Bradley Biera</h2>
+      </a>
+      <div class="header-nav-container">
+        <a class="header-nav-item header-nav-toggle fa fa-bars" href="javascript:void(0);" onclick="toggleMobileNav(event)"></a>
+        <%- include("../../partials/nav.ejs", {
+          navClasses: "header-nav",
+          navItemClasses: "header-nav-item",
+          currentPage: currentPage,
+        }) %>
+      </div>
+    </header>

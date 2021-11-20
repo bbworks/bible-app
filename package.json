@@ -1,0 +1,43 @@
+{
+  "name": "web-builder",
+  "version": "1.0.0",
+  "description": "This project will build websites.",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run start:server\" \"npm run watch\" --kill-others",
+    "watch": "concurrently \"npm run watch:ejs\" \"npm run watch:sass\" \"npm run watch:js\" \"npm run watch:img\" --kill-others",
+    "build": "npm run build:ejs && npm run build:sass & npm run build:js & npm run build:img",
+    "start:server": "browser-sync start --server \"public/\" --files \"public/\" --port 5003",
+    "watch:ejs": "watch \"npm run build:ejs\" ./views/",
+    "build:ejs": "ejs-cli -b views/routes \"**/*.ejs\" --out public/ -e \"partials/\"",
+    "watch:sass": "onchange \"views/**/*.scss\" \"static/scss/*.scss\" -- npm run build:sass",
+    "build:sass": "npm run clean:css & npm run compile:sass & npm run concatenate:css",
+    "clean:css": "del-cli \"public/css/*\" --force",
+    "compile:sass": "sass views/:public/css/ static/scss/:public/css/",
+    "concatenate:css": "gulp concatenate-css",
+    "watch:js": "onchange \"views/**/*.js\" \"static/js/*.js\" -- npm run build:js",
+    "build:js": "npm run clean:js & npm run copy:js",
+    "clean:js": "del-cli \"public/js/*\" --force",
+    "copy:js": "copyfiles \"views/**/*.js\" \"static/js/*.js\" \"public/js\" --flat",
+    "watch:img": "onchange \"views/**/*.png\" \"views/**/*.jpeg\" \"views/**/*.jpg\" \"views/**/*.gif\" \"views/**/*.svg\" \"views/**/*.ico\" \"static/images/*.png\" \"static/images/*.jpeg\" \"static/images/*.jpg\" \"static/images/*.gif\" \"images/*.svg\" \"static/images/*.ico\" -- npm run build:img",
+    "build:img": "npm run clean:img & npm run copy:img",
+    "clean:img": "del-cli \"public/images/*\" --force",
+    "copy:img": "copyfiles \"views/**/*.png\" \"views/**/*.jpeg\" \"views/**/*.jpg\" \"views/**/*.gif\" \"views/**/*.svg\" \"views/**/*.ico\" \"static/images/*.png\" \"static/images/*.jpeg\" \"static/images/*.jpg\" \"static/images/*.gif\" \"static/images/*.svg\" \"static/images/*.ico\" \"public/images\" --flat"
+  },
+  "author": "Bradley Biera",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.27.7",
+    "concurrently": "^6.3.0",
+    "copyfiles": "^2.4.1",
+    "del-cli": "^3.0.1",
+    "ejs-cli": "^2.2.2",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-cli": "^2.3.0",
+    "gulp-concat-css": "^3.1.0",
+    "onchange": "^7.1.0",
+    "sass": "^1.43.4",
+    "watch": "^1.0.2"
+  }
+}

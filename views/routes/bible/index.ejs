@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+	<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+	<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+	<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+	<!--[if gt IE 8]>      <html class="no-js" lang="en"> <![endif]-->
+<html class="no-js" lang="en">
+  <%- include("../../partials/head.ejs", {
+    meta: {
+      title: "Bradley Biera | Bible",
+      cssSheetNames: []  /*concatenating CSS to "/css/styles.css"*/
+    },
+  }) %>
+  <body>
+    <%- include("../../components/Header/Header.ejs", {
+      currentPage: "bible",
+    }) %>
+    <%- include("../../components/Bible/Bible.ejs") %>
+    <%- include("../../components/Footer/Footer.ejs") %>
+    <%- include("../../partials/script.ejs", {
+      scripts: [
+        {name: "bible-api.js", isModule: true},
+        {name: "Bible.js", isModule: true},
+      ]
+    }) %>
+  </body>
+</html>

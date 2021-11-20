@@ -1,0 +1,7 @@
+<!-- views/partials/nav.ejs -->
+
+    <nav class="<%-navClasses-%>">
+      <a class="<%-navItemClasses-%><% if(currentPage === "home") { %> current<% } %>" href="/">Home</a
+      ><a class="<%-navItemClasses-%><% if(currentPage === "about") { %> current<% } %>" href="/about">About</a
+      ><a class="<%-navItemClasses-%><% if(currentPage === "bible") { %> current<% } %>" href="/bible">Bible</a>
+    </nav>

@@ -1,0 +1,31 @@
+<!-- views/partials/footer.ejs -->
+
+    <footer class="footer section">
+      <div class="footer-container container">
+      <div class="footer-section footer-logo">
+        <h2 class="logo">Bradley Biera</h2>
+      </div
+      ><div class="footer-section footer-icons-container">
+        <a class="footer-icons-circle footer-icons-facebook" href="https://www.facebook.com/bradley.biera" target="_self" title="Bradley Biera | Facebook">
+          <i class="footer-icons fab fa-facebook-f"></i>
+        </a>
+        <a class="footer-icons-circle footer-icons-linkedin" href="http://www.linkedin.com/in/bradley-biera-059674135/" target="_self" title="Bradley Biera | LinkedIn">
+          <i class="footer-icons fab fa-linkedin-in"></i>
+        </a>
+        <a class="footer-icons-circle footer-icons-youtube" href="https://www.youtube.com/user/BradleyBieraMusic" target="_self" title="BradleyBieraMusic | YouTube">
+          <i class="footer-icons fab fa-youtube"></i>
+        </a>
+        <a class="footer-icons-circle footer-icons-github" href="https://github.com/bbworks" target="_self" title="Bradley Biera | Github">
+          <i class="footer-icons fab fa-github"></i>
+        </a>
+      </div
+      ><%- include("../../partials/nav.ejs", {
+        navClasses: "footer-section footer-nav",
+        navItemClasses: "footer-nav-item",
+        currentPage: null,
+      }) %>
+      <div class="footer-copyright">
+        <p>©2020 Bradley Biera. All rights reserved.</p>
+      </div>
+      </div>
+    </footer>
