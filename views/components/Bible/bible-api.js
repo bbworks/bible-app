@@ -29,10 +29,10 @@ const fetchUrl = async (resource, options={})=>{
 
 export const getBibles = async (optionsParam={})=>{
   const options = {
-    "language": false,              //include array of chapter summaries, default false
-    "abbreviation": false,          //include array of chapter summaries and an array of sections, default false
-    "name": false,                  //include array of chapter summaries and an array of sections, default false
-    "ids": false,                   //include array of chapter summaries and an array of sections, default false
+    "language": null,              //include array of chapter summaries, default false
+    "abbreviation": null,          //include array of chapter summaries and an array of sections, default false
+    "name": null,                  //include array of chapter summaries and an array of sections, default false
+    "ids": null,                   //include array of chapter summaries and an array of sections, default false
     "include-full-details": false,  //include array of chapter summaries and an array of sections, default false
   };
 
@@ -47,7 +47,10 @@ export const getBibles = async (optionsParam={})=>{
   return fetchUrl("bibles", {query: options});
 };
 
-export const getBibleByBibleId = async (bibleId=DEFAULT_PARTS.bible)=>{
+export const getBibleByBibleId = async (bibleId)=>{
+  //Validate the bible id
+  bibleId = ([undefined, null].includes(bibleId) ? DEFAULT_PARTS.bible : bibleId);
+
   return fetchUrl(`bibles/${bibleId}`)
     .then(response=>{
       DEFAULT_PARTS.bible = bibleId;
@@ -55,7 +58,10 @@ export const getBibleByBibleId = async (bibleId=DEFAULT_PARTS.bible)=>{
     });
 };
 
-export const getBooksByBibleId = async (bibleId=DEFAULT_PARTS.bible, optionsParam={})=>{
+export const getBooksByBibleId = async (bibleId, optionsParam={})=>{
+  //Validate the bible id
+  bibleId = ([undefined, null].includes(bibleId) ? DEFAULT_PARTS.bible : bibleId);
+
   const options = {
     "include-chapters": false,  //include array of chapter summaries, default false
     "include-chapters-and-sections": false,  //include array of chapter summaries and an array of sections, default false
@@ -69,7 +75,11 @@ export const getBooksByBibleId = async (bibleId=DEFAULT_PARTS.bible, optionsPara
   return fetchUrl(`bibles/${bibleId}/books`, {query: options});
 };
 
-export const getBookByBookId = async (bookId=DEFAULT_PARTS.book, bibleId=DEFAULT_PARTS.bible, optionsParam={})=>{
+export const getBookByBookId = async (bookId, bibleId, optionsParam={})=>{
+  //Validate the bible and book ids
+  bibleId = ([undefined, null].includes(bibleId) ? DEFAULT_PARTS.bible : bibleId);
+  bookId = ([undefined, null].includes(bookId) ? DEFAULT_PARTS.book : bookId);
+
   const options = {
     "include-chapters": false,  //include array of chapter summaries, default false
   };
@@ -85,11 +95,19 @@ export const getBookByBookId = async (bookId=DEFAULT_PARTS.book, bibleId=DEFAULT
     });
 };
 
-export const getChaptersByBookId = async (bookId=DEFAULT_PARTS.book, bibleId=DEFAULT_PARTS.bible)=>{
+export const getChaptersByBookId = async (bookId, bibleId)=>{
+  //Validate the bible and book ids
+  bibleId = ([undefined, null].includes(bibleId) ? DEFAULT_PARTS.bible : bibleId);
+  bookId = ([undefined, null].includes(bookId) ? DEFAULT_PARTS.book : bookId);
+
   return fetchUrl(`bibles/${bibleId}/books/${bookId}/chapters`);
 };
 
-export const getChapterByChapterId = async (chapterId=DEFAULT_PARTS.chapter, bibleId=DEFAULT_PARTS.bible, optionsParam={})=>{
+export const getChapterByChapterId = async (chapterId, bibleId, optionsParam={})=>{
+  //Validate the bible and chapter ids
+  bibleId = ([undefined, null].includes(bibleId) ? DEFAULT_PARTS.bible : bibleId);
+  chapterId = ([undefined, null].includes(chapterId) ? DEFAULT_PARTS.chapter : chapterId);
+
   const options = {
     "content-type": "html",            //"html", "json" (beta), "text" (beta), default "html"
     "include-notes": false,            //include footnotes in content, default false
@@ -117,11 +135,19 @@ export const getChapterByChapterId = async (chapterId=DEFAULT_PARTS.chapter, bib
     });
 };
 
-export const getVersesByChapterId = async (chapterId=DEFAULT_PARTS.chapter, bibleId=DEFAULT_PARTS.bible)=>{
+export const getVersesByChapterId = async (chapterId, bibleId)=>{
+  //Validate the bible and chapter ids
+  bibleId = ([undefined, null].includes(bibleId) ? DEFAULT_PARTS.bible : bibleId);
+  chapterId = ([undefined, null].includes(chapterId) ? DEFAULT_PARTS.chapter : chapterId);
+
   return fetchUrl(`bibles/${bibleId}/chapters/${chapterId}/verses`);
 };
 
-export const getVerseByVerseId = async (verseId=DEFAULT_PARTS.verse, bibleId=DEFAULT_PARTS.bible, optionsParam={})=>{
+export const getVerseByVerseId = async (verseId, bibleId, optionsParam={})=>{
+  //Validate the bible id
+  bibleId = ([undefined, null].includes(bibleId) ? DEFAULT_PARTS.bible : bibleId);
+  verseId = ([undefined, null].includes(verseId) ? DEFAULT_PARTS.verse : verseId);
+
   const options = {
     "content-type": "html",            //"html", "json" (beta), "text" (beta), default "html"
     "include-notes": false,            //include footnotes in content, default false

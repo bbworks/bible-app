@@ -1,0 +1,47 @@
+.bible {
+  .bible-reference-selects {
+    margin-bottom: 3rem;
+
+    .bible-reference-select {
+      color: rgb(50,50,50);
+      background: none;
+      border: none;
+      border-bottom: 1px solid gray;
+      font-weight: lighter;
+    }
+
+    .bible-version-select {
+      width: 100%;
+    }
+
+    .bible-book-select {
+      width: 10rem;
+    }
+
+    .bible-chapter-select {
+      width: 5rem;
+    }
+  }
+
+  .bible-scripture {
+    .bible-reference {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .bible-passage {
+      .v {
+        position: relative;
+        top: -0.25rem;
+        font-size: 75%;
+        font-weight: bold;
+        margin-right: 0.125rem;
+      }
+
+      .p {
+        display: block;
+        text-indent: 1rem;
+      }
+    }
+  }
+}
