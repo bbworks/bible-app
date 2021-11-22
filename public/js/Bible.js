@@ -1,12 +1,11 @@
-import * as bibleApi from "/js/bible-api.js";
+import * as bibleApi from "/js/api/bible.js";
+
 
 //Initialize variables
 const bibleVersionSelect = document.querySelector(".bible-version-select");
 const bibleBookSelect = document.querySelector(".bible-book-select");
 const bibleChapterSelect = document.querySelector(".bible-chapter-select");
-
-const bibleReference = document.querySelector(".bible-reference");
-const biblePassage = document.querySelector(".bible-passage");
+const bibleScripture = document.querySelector(".bible-scripture");
 
 //Initialize defaults
 const DEFAULT_BIBLE_REFERENCE = {
@@ -27,7 +26,7 @@ const clearChildren = parent=>{
 };
 
 //Create functions
-const renderBibleVersions = bibleVersions=>{
+const renderBibleVersions = (bibleVersions, DOMNode)=>{
   //Clear the select
   clearChildren(bibleVersionSelect);
 
@@ -66,7 +65,7 @@ const renderBibleVersions = bibleVersions=>{
     });
 };
 
-const renderBibleBooks = bibleBooks=>{
+const renderBibleBooks = (bibleBooks, DOMNode)=>{
   //Clear the select
   clearChildren(bibleBookSelect);
 
@@ -83,12 +82,11 @@ const renderBibleBooks = bibleBooks=>{
   });
 };
 
-const renderBibleChapters = bibleChapters=>{
+const renderBibleChapters = (bibleChapters, DOMNode)=>{
   //Clear the select
   clearChildren(bibleChapterSelect);
 
   //Add each option
-  bibleChapterSelect.innerHTML = '';
   bibleChapters.forEach(bibleChapter=>{
     const bibleChapterOption = document.createElement("option");
     bibleChapterOption.classList.add("bible-chapter-option");
@@ -102,16 +100,22 @@ const renderBibleChapters = bibleChapters=>{
   });
 };
 
-const renderBiblePassage = bibleChapter=>{
+const renderBiblePassage = (bibleChapter, DOMNode)=>{
+  //Initialize variables
+  const bibleReference = bibleScripture.querySelector(".bible-reference");
+  const biblePassage = bibleScripture.querySelector(".bible-passage");
+
+  //Deconstruct the data
   const {content, reference} = bibleChapter;
 
+  //Render the data to the UI
   bibleReference.innerText = reference;
   biblePassage.innerHTML = content;
 };
 
-const setBibleVersion = async versionId=>{
+const setBibleVersion = async (versionId, DOMNode, DOMNode2)=>{
   //Fetch the bible version & books data
-  const bibleVersion = await bibleApi.getBibleByBibleId(versionId);
+  const bibleVersion = await bibleApi.getBibleByBibleId(versionId); //Just to set the shadow bible id
   const bibleBooks = await bibleApi.getBooksByBibleId();
 
   //Set the model data
@@ -121,7 +125,7 @@ const setBibleVersion = async versionId=>{
   bibleVersionSelect.value = versionId;
 
   //Render the bible version's books to the UI
-  renderBibleBooks(bibleBooks);
+  renderBibleBooks(bibleBooks, bibleBookSelect);
 
   //If the current book & chapter are available in this version, reset them,
   // otherwise, grab the first one
@@ -132,7 +136,7 @@ const setBibleVersion = async versionId=>{
     await setBibleBook(bibleBooks[0].id);
 };
 
-const setBibleBook = async bookId=>{
+const setBibleBook = async (bookId, DOMNode, DOMNode2)=>{
   //Fetch the bible book's chapters' data
   const bibleChapters = await bibleApi.getChaptersByBookId(bookId);
 
@@ -143,7 +147,7 @@ const setBibleBook = async bookId=>{
   bibleBookSelect.value = bookId;
 
   //Render the bible book's chapters to the UI
-  renderBibleChapters(bibleChapters);
+  renderBibleChapters(bibleChapters, bibleChapterSelect);
 
   //If the current book is available, set it,
   // otherwise, grab the first one
@@ -154,7 +158,7 @@ const setBibleBook = async bookId=>{
     await setBibleChapter(bibleChapters[0].id);
 };
 
-const setBibleChapter = async chapterId=>{
+const setBibleChapter = async (chapterId, DOMNode, DOMNode2)=>{
   //Fetch the bible chapter's data
   const bibleChapter = await bibleApi.getChapterByChapterId(chapterId, null, {"include-chapter-numbers": true, "include-verse-spans": true});
 
@@ -169,18 +173,7 @@ const setBibleChapter = async chapterId=>{
   bibleChapterSelect.value = chapterId;
 
   //Render the bible chapter's content to the UI
-  renderBiblePassage(bibleChapter);
-};
-
-const initializeBible = async ()=>{
-  //Start by fetching the available bible versions & rendering them
-  const bibleVersions = await bibleApi.getBibles()
-  renderBibleVersions(bibleVersions);
-
-  //Render the default bible reference
-  setBibleVersion(DEFAULT_BIBLE_REFERENCE.version)
-    .then(()=>setBibleBook(DEFAULT_BIBLE_REFERENCE.book))
-    .then(()=>setBibleChapter(DEFAULT_BIBLE_REFERENCE.chapter));
+  renderBiblePassage(bibleChapter, bibleScripture);
 };
 
 
@@ -195,12 +188,27 @@ const onBibleBookSelectInput = async event=>{
 
 const onBibleChapterSelectInput = async event=>{
   setBibleChapter(event.target.value);
-}
+};
 
 
-//Attach event listeners
-bibleVersionSelect.addEventListener("input", onBibleVersionSelectInput);
-bibleBookSelect.addEventListener("input", onBibleBookSelectInput);
-bibleChapterSelect.addEventListener("input", onBibleChapterSelectInput);
+const initializeBible = async ()=>{
+  //Start by initially fetching the available bible versions
+  const bibleVersions = await bibleApi.getBibles()
 
+  //Render the bible version to the UI
+  renderBibleVersions(bibleVersions, bibleVersionSelect);
+
+  //Set the default bible reference
+  setBibleVersion(DEFAULT_BIBLE_REFERENCE.version, bibleVersionSelect, bibleBookSelect)
+    .then(()=>setBibleBook(DEFAULT_BIBLE_REFERENCE.book, bibleBookSelect, bibleChapterSelect))
+    .then(()=>setBibleChapter(DEFAULT_BIBLE_REFERENCE.chapter, bibleChapterSelect, bibleScripture));
+
+  //Attach event listeners
+  bibleVersionSelect.addEventListener("input", onBibleVersionSelectInput);
+  bibleBookSelect.addEventListener("input", onBibleBookSelectInput);
+  bibleChapterSelect.addEventListener("input", onBibleChapterSelectInput);
+};
+
+
+//Start the bible
 initializeBible();
